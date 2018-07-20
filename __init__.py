@@ -1,0 +1,1 @@
+from .morsemessenger import app
