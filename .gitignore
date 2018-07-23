@@ -1,1 +1,6 @@
 config.json
+morsemessenger.sock
+wsgi.py
+__pycache__/*
+morseenv/*
+morsemessenger.ini

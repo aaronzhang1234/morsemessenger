@@ -5,7 +5,6 @@ morse
 import pusher
 import random
 import datetime
-from flask_bootstrap import Bootstrap
 import psycopg2 
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 import json
@@ -23,7 +22,7 @@ app.config.from_envvar('FLASKR_SETTINGS', silent= True)
 @app.route('/')
 def main_page():
     if session.get('channel') and session.get('event'):
-        conn = psycopg2.connect("dbname=morsemessenger user=morse")
+        conn = psycopg2.connect("dbname=morsemessenger user=morse password="+conf['morse_pass']+"")
         cur = conn.cursor()
         cmd = 'SELECT message FROM message WHERE channel=%s AND event=%s ORDER BY id'
         cur.execute(cmd, (session['channel'], session['event']))
@@ -49,7 +48,7 @@ def send_morse():
         secret=conf['pusher_secret'],
         ssl=True
     )
-    conn = psycopg2.connect("dbname=morsemessenger user=morse")
+    conn = psycopg2.connect("dbname=morsemessenger user=morse password="+conf['morse_pass']+"")
     cur = conn.cursor()
     cmd = "insert into message(channel, event, message) values(%s, %s, %s)"
     cur.execute(cmd, (session['channel'], session['event'], request.form['message']))
@@ -66,3 +65,5 @@ def leaveroom():
     session.pop('intalks', None)
     return redirect(url_for('main_page'))
  
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
