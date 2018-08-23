@@ -1,0 +1,7 @@
+CREATE TABLE message(
+    id serial PRIMARY KEY,
+    channel text,
+    message text,
+    event text
+);
+

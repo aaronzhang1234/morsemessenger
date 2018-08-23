@@ -29,7 +29,8 @@ def main_page():
         morses = cur.fetchall()
         cur.close()
         conn.close()
-        return render_template('morsemessenger.html', morses=morses)
+        data = {'channel': session.get('channel'), 'event':session.get('event'), 'key':conf['pusher_key']}
+        return render_template('morsemessenger.html', morses=morses, data = data)
     else:
         return render_template('morsemessenger.html')
 
@@ -46,6 +47,7 @@ def send_morse():
         app_id=conf['pusher_id'],
         key=conf['pusher_key'],
         secret=conf['pusher_secret'],
+        cluster='mt1',
         ssl=True
     )
     conn = psycopg2.connect("dbname=morsemessenger user=morse password="+conf['morse_pass']+"")

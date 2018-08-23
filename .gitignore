@@ -4,3 +4,6 @@ wsgi.py
 __pycache__/*
 morseenv/*
 morsemessenger.ini
+__init__.pyc
+morsemessenger.pyc
+

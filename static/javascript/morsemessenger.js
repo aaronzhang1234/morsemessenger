@@ -1,30 +1,8 @@
 $(document).ready(function(){
-  $(".step").on({
-    mouseenter:function(){
-      $(":first-child",this).animate({
-        fontSize: '+=1em' 
-      }),
-      $(":last-child",this).animate({
-        fontSize: '+=1em'
-      });
-    },
-    mouseleave:function(){
-      $(":first-child",this).animate({
-        fontSize: '-=1em'
-      }),
-      $(":last-child",this).animate({
-        fontSize: '-=1em'
-      });
-    }
-  }),
-  $(".imagewhatis").on({
-    mouseenter:function(){
-      $(this).animate({height:'+=50px',width:'+=50'})
-    },
-    mouseleave:function(){
-      $(this).animate({height:'-=50px',width:'-=50'})
-    }
-  });
-});
-  
-
+    var pusher = new Pusher(pusherKey);
+    var channel = pusher.subscribe(pusherChannel);
+    channel.bind(pusherEvent, function(data){
+       $('#messagearea ul:first-child').append('<li class="morsemessage">'+data.message+'</li>');
+    })
+    $('#messagearea').css("overflow-y", "scroll");
+});  
