@@ -15,8 +15,7 @@ conf = json.load(open('config.json', 'r'))
 app.config.update(dict(
     SECRET_KEY=conf['secret_key'],
     USERNAME = conf['username'],
-    PASSWORD = conf['password']
-))
+    PASSWORD = conf['password']))
 app.config.from_envvar('FLASKR_SETTINGS', silent= True)
 
 @app.route('/')

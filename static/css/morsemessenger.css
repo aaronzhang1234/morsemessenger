@@ -9,8 +9,7 @@ div#messagearea{
   border:3px outset;
   margin:auto;
   width:70%;
-  height:80%;
-}
+  height:80%; }
 li.morsemessage{
   font-family:'Open Sans',sans-serif;
   font-size:2vw;
@@ -75,7 +74,13 @@ h3.steptext{
   text-align:center;
   font-size:3vw;
   padding-top:.5em;
-  width:90%
+  width:90%;
+}
+h1#messageLocation{
+    margin:auto;
+    text-align:center;
+    font-size:4vw;
+    width:90%;
 }
 h3.stepnumber{
   text-align:center;
