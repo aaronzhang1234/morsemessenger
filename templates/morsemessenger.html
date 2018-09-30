@@ -11,8 +11,7 @@
   <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../static/javascript/morsemessenger.js"></script>
-  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/reset.css') }}">
-  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/morsemessenger.css') }}">
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/reset.css') }}"> <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/morsemessenger.css') }}">
 </head>
 <body>
   <h1 id="morseheader">Morse Messenger </h1>
@@ -23,7 +22,7 @@
         var pusherKey     = "{{data.key}}";
     </script>
 
-    <h1>{{session.channel}}</h1>
+    <h1 id="messageLocation">CHANNEL: {{session.channel}} || EVENT: {{session.event}}</h1>
     <div id= "messagearea">
       <ul>
       {% for morse in morses %}
@@ -33,6 +32,7 @@
     </div>
     <form id="sendmessage" action="{{url_for('send_morse')}}" method=post>
       <dd><input type=text name=message placeholder="Send a message">
+      <input type="submit" name="Send Message">
     </form>
     <a id="leaveroom" href="{{ url_for('leaveroom') }}">Leave Room</a>
   {% endif %}
